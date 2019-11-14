@@ -1,26 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const util = require('../helpers/util.js')
 
-function ehRepetido(result, numero) {
-    var found = false
-    result.forEach(element => {
-        if (element == numero) {
-            found = true
-        }
-    });
-    return found
-}
-
-function gerarNumerosAleatorios(qtdNumerosJogados) {
-    var result = []
-    while (result.length < qtdNumerosJogados) {
-        var numero = Math.floor(Math.random() * 52) + 1
-        if (!ehRepetido(result, numero)) {
-            result.push(numero)
-        }
-    }
-    return result
-}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -34,14 +15,10 @@ router.post('/', function(req, res) {
         res.redirect('/')
     } else {
         res.render('resultado', {
-            numeros: gerarNumerosAleatorios(qtdNumerosJogados)
+            numeros: util.gerarNumerosAleatorios(qtdNumerosJogados)
         })
     }
 })
-
-
-
-
 
 
 
