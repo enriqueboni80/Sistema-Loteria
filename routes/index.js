@@ -20,6 +20,13 @@ class jogo {
     get jogos() {
         return this._jogos;
     }
+
+    gerarJogo() {
+        let jogo = util.gerarNumerosAleatorios(this.qtdDezenas);
+        return jogo;
+    }
+
+
     sayHello() {
         console.log('Hello, my name is ' + this.qtdDezenas);
     }
@@ -29,7 +36,7 @@ class jogo {
 router.get('/', function(req, res, next) {
     var justAGuy = new jogo(6, 2);
     justAGuy.jogos = '6';
-    justAGuy.sayHello();
+    console.log(justAGuy.gerarJogo());
 
     //res.render('index', { messages: req.flash('info') });
 });
