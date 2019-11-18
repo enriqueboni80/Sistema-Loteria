@@ -43,29 +43,31 @@ router.post('/', function(req, res) {
         req.flash('info', 'Você deve jogar entre 6 e 10 numeros')
         res.redirect('/')
     } else {
-        var novoJogo = new jogos(qtdDezenas, qtdJogos);
+        var novoJogo = new jogos(qtdDezenas, qtdJogos).gerarJogo()
+        var sorteio = util.gerarNumerosAleatorios()
         res.render('resultado', {
-            numerosJogados: novoJogo.gerarJogo(),
-            numerosSorteados: util.gerarNumerosAleatorios(),
-            teste: compararResposta(novoJogo.gerarJogo(), util.gerarNumerosAleatorios())
+            numerosJogados: novoJogo,
+            numerosSorteados: sorteio,
+            resultado: compararResposta(novoJogo, sorteio)
         })
     }
 })
 
 function compararResposta(jogos, numerosSorteados) {
-    var resultado = 0
+    var array_resultado = []
+    var resultado
     jogos.forEach(jogo => {
+        resultado = 0
         jogo.forEach(numeroJogado => {
             numerosSorteados.forEach(numeroSorteado => {
                 if (numeroSorteado == numeroJogado) {
-                    resultado = 1
+                    resultado = resultado + 1
                 }
             });
         });
-        return resultado
+        array_resultado.push(resultado)
     });
+    console.log(array_resultado)
 }
-
-
 
 module.exports = router;
