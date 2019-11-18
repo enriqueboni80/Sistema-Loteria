@@ -10,6 +10,10 @@ function ehRepetido(result, numero) {
     return found
 }
 
+function sortfunction(a, b) {
+    return (a - b) //ordenado numericamente e de ordem crescente.
+}
+
 exports.gerarNumerosAleatorios = function(qtdNumerosJogados) {
     var result = []
     while (result.length < qtdNumerosJogados) {
@@ -18,5 +22,5 @@ exports.gerarNumerosAleatorios = function(qtdNumerosJogados) {
             result.push(numero)
         }
     }
-    return result
+    return result.sort(sortfunction)
 }

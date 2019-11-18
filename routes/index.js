@@ -3,7 +3,7 @@ var router = express.Router();
 const util = require('../helpers/util.js')
 
 
-class jogo {
+class jogos {
     constructor(qtdDezenas, totalJogos) {
         this.qtdDezenas = qtdDezenas;
         this.totalJogos = totalJogos;
@@ -20,36 +20,34 @@ class jogo {
     get jogos() {
         return this._jogos;
     }
-
     gerarJogo() {
-        let jogo = util.gerarNumerosAleatorios(this.qtdDezenas);
-        return jogo;
-    }
-
-
-    sayHello() {
-        console.log('Hello, my name is ' + this.qtdDezenas);
+        var ArrayJogos = []
+        let jogo
+        while (ArrayJogos.length < this.totalJogos) {
+            jogo = util.gerarNumerosAleatorios(this.qtdDezenas);
+            ArrayJogos.push(jogo);
+        }
+        return ArrayJogos;
     }
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var justAGuy = new jogo(7, 2);
-    justAGuy.jogos = '6';
-    console.log(justAGuy.gerarJogo());
-
-    //res.render('index', { messages: req.flash('info') });
+    res.render('index', { messages: req.flash('info') });
 });
 
 router.post('/', function(req, res) {
-    var qtdNumerosJogados = req.body.qtdNumeros
-    if (qtdNumerosJogados < 6 || qtdNumerosJogados > 15) {
-        req.flash('info', 'deu pau')
+    var qtdDezenas = req.body.qtdDezenas
+    var qtdJogos = req.body.qtdJogos
+    if (qtdDezenas < 6 || qtdDezenas > 10) {
+        req.flash('info', 'Você deve jogar entre 6 e 10 numeros')
         res.redirect('/')
     } else {
-        res.render('resultado', {
+        var justAGuy = new jogos(qtdDezenas, qtdJogos);
+        res.send(justAGuy.gerarJogo());
+        /* res.render('resultado', {
             numeros: util.gerarNumerosAleatorios(qtdNumerosJogados)
-        })
+        }) */
     }
 })
 
