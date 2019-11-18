@@ -24,6 +24,7 @@ module.exports = class jogos {
             jogo = util.gerarNumerosAleatorios(this.qtdDezenas);
             ArrayJogos.push(jogo);
         }
-        return ArrayJogos;
+        this.jogos = ArrayJogos;
+        return this.jogos;
     }
 }

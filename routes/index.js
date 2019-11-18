@@ -3,7 +3,6 @@ var router = express.Router();
 const util = require('../helpers/util.js')
 const jogos = require('../classes/jogos.js')
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { messages: req.flash('info') });
@@ -16,12 +15,13 @@ router.post('/', function(req, res) {
         req.flash('info', 'Você deve jogar entre 6 e 10 numeros')
         res.redirect('/')
     } else {
-        var novoJogo = new jogos(qtdDezenas, qtdJogos).gerarJogo()
-        var sorteio = util.gerarNumerosAleatorios()
+        var novoJogo = new jogos(qtdDezenas, qtdJogos)
+        novoJogo.gerarJogo()
+        novoJogo.resultado = util.gerarNumerosAleatorios()
         res.render('resultado', {
-            numerosJogados: novoJogo,
-            numerosSorteados: sorteio,
-            resultado: util.compararResposta(novoJogo, sorteio)
+            numerosJogados: novoJogo.jogos,
+            numerosSorteados: novoJogo.resultado,
+            resultado: util.compararResposta(novoJogo.jogos, novoJogo.resultado)
         })
     }
 })
