@@ -1,10 +1,21 @@
+<h1>Numeros Jogados</h1>
 {{#each numerosJogados}}
     Jogo{{@index}}: {{this}}<br><br>
 {{/each}}
 <br><br>
-{{resultado}}
-
 <hr>
-Numeros Sorteados: {{numerosSorteados}}
+<br>
+<h1>Numeros Sorteados</h1>
+<b>{{numerosSorteados}}</b>
+<br><br>
+<hr>
+<h1>Acertos</h1>
+{{#each resultado}}
+    Jogo{{@index}} - acertou: {{this}} Numero(s)<br><br>
+{{/each}}
+<br>
+<hr>
+
 <br><br><br><br>
-<a href="/">Realizar novo jogo</a>
+<a href="/"><h2>Realizar novo jogo</h2></a>
+<hr>

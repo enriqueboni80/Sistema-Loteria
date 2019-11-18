@@ -67,7 +67,7 @@ function compararResposta(jogos, numerosSorteados) {
         });
         array_resultado.push(resultado)
     });
-    console.log(array_resultado)
+    return array_resultado
 }
 
 module.exports = router;
