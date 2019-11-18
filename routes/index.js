@@ -14,6 +14,9 @@ router.post('/', function(req, res) {
     if (qtdDezenas < 6 || qtdDezenas > 10) {
         req.flash('info', 'Você deve jogar entre 6 e 10 numeros')
         res.redirect('/')
+    } else if (qtdJogos <= 0) {
+        req.flash('info', 'A quantidade de jogos deve ser maior que Zero')
+        res.redirect('/')
     } else {
         var novoJogo = new jogos(qtdDezenas, qtdJogos)
         novoJogo.gerarJogo()
