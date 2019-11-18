@@ -34,7 +34,7 @@ class jogo {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var justAGuy = new jogo(6, 2);
+    var justAGuy = new jogo(7, 2);
     justAGuy.jogos = '6';
     console.log(justAGuy.gerarJogo());
 
