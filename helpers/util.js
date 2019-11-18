@@ -14,7 +14,7 @@ function sortfunction(a, b) {
     return (a - b) //ordenado numericamente e de ordem crescente.
 }
 
-exports.gerarNumerosAleatorios = function(qtdNumerosJogados) {
+exports.gerarNumerosAleatorios = function(qtdNumerosJogados = 6) {
     var result = []
     while (result.length < qtdNumerosJogados) {
         var numero = Math.floor(Math.random() * 60) + 1

@@ -9,7 +9,7 @@ class jogos {
         this.totalJogos = totalJogos;
     }
     set resultado(resultado) {
-        this._qtdDezenas = qtdDezenas;
+        this._resultado = resultado;
     }
     get resultado() {
         return this._resultado;
@@ -46,9 +46,26 @@ router.post('/', function(req, res) {
         var novoJogo = new jogos(qtdDezenas, qtdJogos);
         res.render('resultado', {
             numerosJogados: novoJogo.gerarJogo(),
-            numerosSorteados: util.gerarNumerosAleatorios()
+            numerosSorteados: util.gerarNumerosAleatorios(),
+            teste: compararResposta(novoJogo.gerarJogo(), util.gerarNumerosAleatorios())
         })
     }
 })
+
+function compararResposta(jogos, numerosSorteados) {
+    var resultado = 0
+    jogos.forEach(jogo => {
+        jogo.forEach(numeroJogado => {
+            numerosSorteados.forEach(numeroSorteado => {
+                if (numeroSorteado == numeroJogado) {
+                    resultado = 1
+                }
+            });
+        });
+        return resultado
+    });
+}
+
+
 
 module.exports = router;
