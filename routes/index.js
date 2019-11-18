@@ -44,9 +44,9 @@ router.post('/', function(req, res) {
         res.redirect('/')
     } else {
         var novoJogo = new jogos(qtdDezenas, qtdJogos);
-        //res.send(novoJogo.gerarJogo());
         res.render('resultado', {
-            numeros: novoJogo.gerarJogo()
+            numerosJogados: novoJogo.gerarJogo(),
+            numerosSorteados: util.gerarNumerosAleatorios()
         })
     }
 })
