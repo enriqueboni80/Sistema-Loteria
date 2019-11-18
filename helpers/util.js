@@ -24,3 +24,20 @@ exports.gerarNumerosAleatorios = function(qtdNumerosJogados = 6) {
     }
     return result.sort(sortfunction)
 }
+
+exports.compararResposta = function(jogos, numerosSorteados) {
+    var array_resultado = []
+    var resultado
+    jogos.forEach(jogo => {
+        resultado = 0
+        jogo.forEach(numeroJogado => {
+            numerosSorteados.forEach(numeroSorteado => {
+                if (numeroSorteado == numeroJogado) {
+                    resultado = resultado + 1
+                }
+            });
+        });
+        array_resultado.push(resultado)
+    });
+    return array_resultado
+}
