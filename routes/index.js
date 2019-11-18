@@ -43,11 +43,11 @@ router.post('/', function(req, res) {
         req.flash('info', 'Você deve jogar entre 6 e 10 numeros')
         res.redirect('/')
     } else {
-        var justAGuy = new jogos(qtdDezenas, qtdJogos);
-        res.send(justAGuy.gerarJogo());
-        /* res.render('resultado', {
-            numeros: util.gerarNumerosAleatorios(qtdNumerosJogados)
-        }) */
+        var novoJogo = new jogos(qtdDezenas, qtdJogos);
+        //res.send(novoJogo.gerarJogo());
+        res.render('resultado', {
+            numeros: novoJogo.gerarJogo()
+        })
     }
 })
 
